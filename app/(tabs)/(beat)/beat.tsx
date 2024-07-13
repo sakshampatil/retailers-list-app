@@ -1,5 +1,5 @@
 import { StyleSheet, SafeAreaView, ScrollView, View, Image } from "react-native";
-import { useGetRetailersQuery } from "../../store/services/retailerApi";
+import { useGetRetailersQuery } from "../../../store/services/retailerApi";
 import { useEffect } from "react";
 import Retailer from "@/components/retailer";
 import { IRetailer } from "@/types/types";
@@ -22,14 +22,14 @@ export default function BeatScreen() {
           <OctIcons size={25} name="three-bars" color={lightOrange} />
         </View>
         <View style={styles.imageIconContainer}>
-          <Image style={styles.imageIcon} source={require("../../assets/images/googleMaps.png")} />
+          <Image
+            style={styles.imageIcon}
+            source={require("../../../assets/images/googleMaps.png")}
+          />
         </View>
       </View>
       <ScrollView>
         {data && data.map((ele: IRetailer) => <Retailer key={ele.id} retailer={ele} />)}
-        {/* <TouchableOpacity className="bg-orange-300 px-3 py-2 rounded-md">
-        <Text className="text-white">Retailers</Text>
-      </TouchableOpacity> */}
       </ScrollView>
     </SafeAreaView>
   );

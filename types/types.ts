@@ -5,4 +5,7 @@ export interface IRetailer {
   lastOrderValue: number;
   photo: string;
   id: number;
+  zipCode: number;
+  state: string;
+  city: string;
 }

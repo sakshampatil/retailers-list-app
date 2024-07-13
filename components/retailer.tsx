@@ -11,12 +11,14 @@ import {
 import { lightOrange, Orange } from "@/constants/Colors";
 import { header, normal, small, superSmall } from "@/constants/Size";
 import { format } from "date-fns";
+import Popover, { PopoverPlacement } from "react-native-popover-view";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesomeSix from "@expo/vector-icons/FontAwesome6";
 import IonIcons from "@expo/vector-icons/Ionicons";
 import Foundation from "@expo/vector-icons/Foundation";
+import { useRef, useState } from "react";
 
 interface IRetailerProps {
   retailer: IRetailer;
@@ -26,6 +28,9 @@ const { width: wWidth, height: wHeight } = Dimensions.get("window");
 const baseFontSize = 16;
 
 export default function Retailer({ retailer }: IRetailerProps) {
+  const popover = useRef();
+  const [showPopover, setShowPopover] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -51,10 +56,33 @@ export default function Retailer({ retailer }: IRetailerProps) {
           </View>
         </View>
         {/* SubHeader  */}
-        <View style={styles.subHeader}>
+        {/* <View style={styles.subHeader}>
           <MaterialCommunityIcons size={normal} name="map-marker-outline" color={"gray"} />
-          <Text style={styles.subHeaderText}>View</Text>
+          <Text ref={popover} style={styles.subHeaderText}>
+            View
+          </Text>
         </View>
+        <Popover
+          from={popover}
+          isVisible={showPopover}
+          onRequestClose={() => setShowPopover(false)}
+        >
+          <Text>This is the contents of the popover</Text>
+        </Popover> */}
+
+        <Popover
+          placement={PopoverPlacement.BOTTOM}
+          from={
+            <TouchableOpacity style={{ width: 35 }}>
+              <View style={styles.subHeader}>
+                <MaterialCommunityIcons size={normal} name="map-marker-outline" color={"gray"} />
+                <Text style={styles.subHeaderText}>View</Text>
+              </View>
+            </TouchableOpacity>
+          }
+        >
+          <Text>This is the contents of the popover</Text>
+        </Popover>
         {/* Context  */}
         <View style={styles.context}>
           <View style={styles.subContext}>

@@ -8,7 +8,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "orange" }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: "orange", headerShown: false }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -17,7 +17,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="beat"
+        name="(beat)"
         options={{
           title: "Beat",
           tabBarIcon: ({ color }) => (
