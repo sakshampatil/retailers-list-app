@@ -8,7 +8,7 @@ import OctIcons from "@expo/vector-icons/Octicons";
 import { header } from "@/constants/Size";
 import { lightOrange } from "@/constants/Colors";
 
-export default function BeatScreen() {
+export default function RetailerListScreen() {
   const { data, error, isLoading } = useGetRetailersQuery();
 
   useEffect(() => {

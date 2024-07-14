@@ -11,7 +11,7 @@ import {
 import { lightOrange, Orange } from "@/constants/Colors";
 import { header, normal, small, superSmall } from "@/constants/Size";
 import { format } from "date-fns";
-import Popover, { PopoverPlacement } from "react-native-popover-view";
+import Popover, { PopoverPlacement, PopoverMode } from "react-native-popover-view";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -19,6 +19,7 @@ import FontAwesomeSix from "@expo/vector-icons/FontAwesome6";
 import IonIcons from "@expo/vector-icons/Ionicons";
 import Foundation from "@expo/vector-icons/Foundation";
 import { useRef, useState } from "react";
+import { Link } from "expo-router";
 
 interface IRetailerProps {
   retailer: IRetailer;
@@ -29,7 +30,7 @@ const baseFontSize = 16;
 
 export default function Retailer({ retailer }: IRetailerProps) {
   const popover = useRef();
-  const [showPopover, setShowPopover] = useState(false);
+  const [showPopover, setShowPopover] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
@@ -55,25 +56,15 @@ export default function Retailer({ retailer }: IRetailerProps) {
             </Pressable>
           </View>
         </View>
-        {/* SubHeader  */}
-        {/* <View style={styles.subHeader}>
-          <MaterialCommunityIcons size={normal} name="map-marker-outline" color={"gray"} />
-          <Text ref={popover} style={styles.subHeaderText}>
-            View
-          </Text>
-        </View>
+        {/* PopOver  */}
         <Popover
-          from={popover}
+          mode={PopoverMode.RN_MODAL}
+          popoverStyle={styles.PopoverContainer}
+          placement={PopoverPlacement.BOTTOM}
           isVisible={showPopover}
           onRequestClose={() => setShowPopover(false)}
-        >
-          <Text>This is the contents of the popover</Text>
-        </Popover> */}
-
-        <Popover
-          placement={PopoverPlacement.BOTTOM}
           from={
-            <TouchableOpacity style={{ width: 35 }}>
+            <TouchableOpacity onPress={() => setShowPopover(true)} style={{ width: 35 }}>
               <View style={styles.subHeader}>
                 <MaterialCommunityIcons size={normal} name="map-marker-outline" color={"gray"} />
                 <Text style={styles.subHeaderText}>View</Text>
@@ -81,7 +72,17 @@ export default function Retailer({ retailer }: IRetailerProps) {
             </TouchableOpacity>
           }
         >
-          <Text>This is the contents of the popover</Text>
+          <Link href={"/retailerLocation"} asChild>
+            <TouchableOpacity onPress={() => setShowPopover(false)} style={styles.popoverContext}>
+              <View style={styles.subHeader}>
+                <MaterialCommunityIcons size={normal} name="map-marker-outline" color={"gray"} />
+                <Text style={styles.subHeaderText}>Address</Text>
+              </View>
+              <View>
+                <Text>{`${retailer.city}, ${retailer.state}, ${retailer.zipCode}`}</Text>
+              </View>
+            </TouchableOpacity>
+          </Link>
         </Popover>
         {/* Context  */}
         <View style={styles.context}>
@@ -173,6 +174,17 @@ const styles = StyleSheet.create({
   },
   subHeaderText: {
     color: "gray",
+  },
+  PopoverContainer: {
+    borderColor: lightOrange,
+    borderBottomColor: lightOrange,
+    borderBottomWidth: 2,
+    borderWidth: 2,
+    paddingHorizontal: 7,
+    paddingVertical: 5,
+  },
+  popoverContext: {
+    flexDirection: "column",
   },
   context: {
     flexDirection: "row",

@@ -5,7 +5,7 @@ import { Image, StyleSheet, Platform, Text, View, TouchableOpacity } from "react
 export default function ArenaScreen() {
   return (
     <View style={styles.container}>
-      <Link href={"/beat"} asChild>
+      <Link href={"/retailerList"} asChild>
         <TouchableOpacity style={styles.button}>
           <Text style={{ color: "white", fontSize: 22 }}>Retailers</Text>
         </TouchableOpacity>

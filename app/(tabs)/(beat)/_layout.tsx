@@ -5,7 +5,8 @@ export default function Layout() {
   return (
     <Stack>
       <Stack.Screen name="index" />
-      <Stack.Screen name="beat" />
+      <Stack.Screen name="retailerList" />
+      <Stack.Screen name="retailerLocation" />
     </Stack>
   );
 }
