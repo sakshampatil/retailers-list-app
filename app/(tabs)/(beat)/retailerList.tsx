@@ -7,12 +7,18 @@ import { IRetailer } from "@/types/types";
 import OctIcons from "@expo/vector-icons/Octicons";
 import { header } from "@/constants/Size";
 import { lightOrange } from "@/constants/Colors";
+import { useAppDispatch } from "@/store/hooks";
+import { setRetailersList } from "@/store/features/retailerSlice";
 
 export default function RetailerListScreen() {
   const { data, error, isLoading } = useGetRetailersQuery();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     console.log("DATA = ", data);
+    if (data !== undefined) {
+      dispatch(setRetailersList({ data }));
+    }
   }, [data]);
 
   return (
@@ -38,6 +44,7 @@ export default function RetailerListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 2,
   },
   header: {
     marginVertical: 5,

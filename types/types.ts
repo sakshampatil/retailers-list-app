@@ -3,9 +3,11 @@ export interface IRetailer {
   lastVisitDate: Date;
   lastOrderDate: Date;
   lastOrderValue: number;
-  photo: string;
+  image: string;
   id: number;
   zipCode: number;
   state: string;
   city: string;
+  latitude: number;
+  longitude: number;
 }

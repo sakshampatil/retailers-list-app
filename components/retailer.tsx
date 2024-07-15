@@ -38,7 +38,7 @@ export default function Retailer({ retailer }: IRetailerProps) {
         <Image
           style={styles.image}
           source={{
-            uri: retailer.photo,
+            uri: retailer.image,
           }}
         />
       </View>
@@ -72,7 +72,13 @@ export default function Retailer({ retailer }: IRetailerProps) {
             </TouchableOpacity>
           }
         >
-          <Link href={"/retailerLocation"} asChild>
+          <Link
+            href={{
+              pathname: "/retailerLocation",
+              params: { latitude: retailer.latitude, longitude: retailer.longitude },
+            }}
+            asChild
+          >
             <TouchableOpacity onPress={() => setShowPopover(false)} style={styles.popoverContext}>
               <View style={styles.subHeader}>
                 <MaterialCommunityIcons size={normal} name="map-marker-outline" color={"gray"} />
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   imageContainer: {
-    height: wHeight * 0.14,
+    height: "auto",
     width: wWidth * 0.3,
   },
   image: {
@@ -164,6 +170,7 @@ const styles = StyleSheet.create({
   },
   headerName: {
     fontSize: baseFontSize + wWidth * 0.005,
+    width: wWidth * 0.5,
   },
   headerIcons: {
     flexDirection: "row",
@@ -188,7 +195,7 @@ const styles = StyleSheet.create({
   },
   context: {
     flexDirection: "row",
-    gap: 4,
+    justifyContent: "space-evenly",
     marginVertical: 5,
   },
   subContext: {
