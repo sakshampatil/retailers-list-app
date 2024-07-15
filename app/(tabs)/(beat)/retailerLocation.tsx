@@ -125,7 +125,7 @@ export default function RetailerLocationScreen() {
                 coordinate={{ latitude: ele.latitude, longitude: ele.longitude }}
                 title={ele.name}
               >
-                <CustomMarker name={ele.name} />
+                <CustomMarker isSelected={ele.id === selectedItem.id} name={ele.name} />
               </Marker>
             ))}
         </MapView>
