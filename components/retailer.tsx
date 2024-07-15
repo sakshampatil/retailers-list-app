@@ -75,7 +75,11 @@ export default function Retailer({ retailer }: IRetailerProps) {
           <Link
             href={{
               pathname: "/retailerLocation",
-              params: { latitude: retailer.latitude, longitude: retailer.longitude },
+              params: {
+                latitude: retailer.latitude,
+                longitude: retailer.longitude,
+                id: retailer.id,
+              },
             }}
             asChild
           >
