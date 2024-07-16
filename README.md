@@ -10,17 +10,18 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
-   Add your Google Maps Api Key in app.json
+2. Add your Google Maps Api Key in app.json
 
-   ```json
-   "android": {
-      "config": {
-        "googleMaps": {
-          "apiKey": "Your Google Maps Api Key"
-        }
-      }
-   ```
+```json
+"android": {
+   "config": {
+     "googleMaps": {
+       "apiKey": "Your Google Maps Api Key"
+     }
+   }
+```
+
+3. To Start the app
 
    ```bash
     npx expo start
