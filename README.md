@@ -12,14 +12,14 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 2. Add your Google Maps Api Key in app.json
 
-```json
-"android": {
+   ```json
+   "android": {
    "config": {
      "googleMaps": {
        "apiKey": "Your Google Maps Api Key"
      }
    }
-```
+   ```
 
 3. To Start the app
 
